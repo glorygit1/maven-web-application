@@ -12,7 +12,7 @@
 <h1 align="center">Landmark Technologies</h1>
 <h2 align="center">  
 	Landmark Technology is an ideal online training  platform for DevOps and Cloud Engineers. 
-	We also offer interview preparations and job assitance.
+	We are supporting ebay black friday project.
 	Team Lifted members are destined for a good DevOps job or jobs.
 	Class 26 will run from October 2, 2021.
 	
