@@ -1,1 +1,32 @@
 
+node
+ {
+  def mavenHome = tool name: "maven3.8.2"
+  stage("1clone") 
+      {
+        git credentialsId: 'Github-credential1', url: 'https://github.com/glorygit1/maven-web-application'  
+ }
+ stage("2Build")
+ {
+ sh "${mavenHome}/bin/mvn clean package"
+ }
+  stage("3ExecuteSonarQubeReport")
+ {
+ sh "${mavenHome}/bin/mvn sonar:sonar"
+ }
+  stage("4UploadArtifactsintoNexus")
+ {
+ sh "${mavenHome}/bin/mvn deploy"
+ }
+ stage("5DeployAppTomcat")
+ {
+  deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://3.84.28.64:8080/')], contextPath: null, war: 'target/*war'
+}
+
+ stage('6EmailNotification')
+ {
+     emailext body: 'Take a look at this project', subject: 'first deployment into tomcat', to: 'developers '
+ }
+ 
+ 
+ }
